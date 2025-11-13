@@ -4,7 +4,7 @@ export interface ICardsRepository {
   upsert(card: Card): Promise<void>;
   upsertMany(cards: Card[]): Promise<void>;
   getAllInValueRange(minValue: number | null, maxValue: number | null): Promise<Card[]>;
-  getAll(limit: number, offset: number): Promise<Card[]>;
+  getAllByLimit(limit: number, offset: number): Promise<Card[]>;
   getAllWithFilters(minValue: number | null, maxValue: number | null, limit: number, offset: number): Promise<Card[]>;
   getCount(): Promise<number>;
   getAllByIds(altAssetIds: string[]): Promise<Card[]>;

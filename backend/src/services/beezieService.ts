@@ -22,7 +22,7 @@ export class BeezieService implements IBeezieService {
   }
 
   public async fetchTokenDetailsByCategory(category: string): Promise<TransformedDetailedTokenData[]> {
-    const maxPagesToFetch = 10;
+    const maxPagesToFetch = 1;
     const collectibles = await this.fetchAllCollectiblesByCategory(category, maxPagesToFetch);
     const tokenIds = collectibles.map((collectible) => collectible.tokenId);
     return processBatched(tokenIds, (tokenId) => this.fetchTokenDetailsById(tokenId), {

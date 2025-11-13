@@ -11,15 +11,16 @@ const WINDOW_MS = 15 * 60 * 1000; // 15 minutes
 async function main() {
   const app = new Hono();
 
-  const limiter = rateLimiter({
-    windowMs: WINDOW_MS,
-    limit: 100,
-    standardHeaders: "draft-6",
-    keyGenerator: (c) => c.req.header("cf-connecting-ip") ?? "",
-  });
-
   app.use("*", logger());
-  app.use("*", limiter);
+  app.use(
+    "*",
+    rateLimiter({
+      windowMs: WINDOW_MS,
+      limit: 100,
+      standardHeaders: "draft-6",
+      keyGenerator: (c) => c.req.header("cf-connecting-ip") ?? "",
+    })
+  );
 
   app.get("/health", (context) => {
     return context.json({

@@ -39,7 +39,7 @@ app.get("/", async (context) => {
       cards = await services.cardsService.getAllWithFilters(minValue, maxValue, limit, offset);
       hasFilters = true;
     } else {
-      cards = await services.cardsService.getAll(limit, offset);
+      cards = await services.cardsService.getAllByLimit(limit, offset);
     }
 
     const totalCount = await services.cardsService.getCount();

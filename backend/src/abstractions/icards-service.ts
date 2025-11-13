@@ -1,10 +1,11 @@
 import type { Card } from "../configs/db/schema.js";
+import type { ICardsChangesListener } from "./icards-changes-listener.js";
 
 export interface ICardsService {
   upsert(card: Card): Promise<void>;
   upsertMany(cards: Card[]): Promise<void>;
   getAllInValueRange(minValue: number | null, maxValue: number | null): Promise<Card[]>;
-  getAll(limit: number, offset: number): Promise<Card[]>;
+  getAllByLimit(limit: number, offset: number): Promise<Card[]>;
   getAllWithFilters(minValue: number | null, maxValue: number | null, limit: number, offset: number): Promise<Card[]>;
   getCount(): Promise<number>;
   getAllByIds(altAssetIds: string[]): Promise<Card[]>;
@@ -15,4 +16,7 @@ export interface ICardsService {
     mediumValue: number;
     highValue: number;
   }>;
+
+  subscribeToChanges(listener: ICardsChangesListener): void;
+  unsubscribeFromChanges(listener: ICardsChangesListener): void;
 }

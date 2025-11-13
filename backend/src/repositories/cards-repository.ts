@@ -70,7 +70,7 @@ export class CardsRepository implements ICardsRepository {
     return result[0].count === 0;
   }
 
-  async getAll(limit: number, offset: number): Promise<Card[]> {
+  async getAllByLimit(limit: number, offset: number): Promise<Card[]> {
     const result = await this.db
       .select({ beezieTokenId: cards.beezieTokenId, altAssetId: cards.altAssetId, altMarketValue: cards.altMarketValue })
       .from(cards)
