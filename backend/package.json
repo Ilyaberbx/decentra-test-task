@@ -12,6 +12,7 @@
     "cron": "^4.3.4",
     "docker": "^1.0.0",
     "dotenv": "^17.2.3",
+    "drizzle-kit": "^0.31.6",
     "drizzle-orm": "^0.44.7",
     "hono": "^4.10.5",
     "hono-rate-limiter": "^0.4.2",

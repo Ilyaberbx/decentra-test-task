@@ -50,16 +50,16 @@ export class CardsService implements ICardsService {
     return await this.cardsRepository.getCountByValueTier();
   }
 
-  public async getAllByLimit(limit: number, offset: number): Promise<Card[]> {
-    return await this.cardsRepository.getAllByLimit(limit, offset);
+  public getAllByLimit(limit: number, offset: number): Promise<Card[]> {
+    return this.cardsRepository.getAllByLimit(limit, offset);
   }
 
-  public async getAllWithFilters(minValue: number | null, maxValue: number | null, limit: number, offset: number): Promise<Card[]> {
-    return await this.cardsRepository.getAllWithFilters(minValue, maxValue, limit, offset);
+  public getAllWithFilters(minValue: number | null, maxValue: number | null, limit: number, offset: number): Promise<Card[]> {
+    return this.cardsRepository.getAllWithFilters(minValue, maxValue, limit, offset);
   }
 
-  public async getCount(): Promise<number> {
-    return await this.cardsRepository.getCount();
+  public getCount(): Promise<number> {
+    return this.cardsRepository.getCount();
   }
 
   public subscribeToChanges(listener: ICardsChangesListener): void {
