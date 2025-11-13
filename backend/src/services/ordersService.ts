@@ -26,12 +26,15 @@ export class OrdersService implements ICardsChangesListener {
 
     for (const card of cards) {
       const orderValue = Number(card.altMarketValue);
+      const balance = await this.walletService.balanceOf(walletInfo.address);
+
+      if (balance <= THRESHOLD_TO_STOP_ORDERING) {
+        return;
+      }
 
       if (orderValue > ORDER_MAX_VALUE) {
         continue;
       }
-
-      const balance = await this.walletService.balanceOf(walletInfo.address);
 
       if (balance < orderValue) {
         continue;
@@ -39,15 +42,6 @@ export class OrdersService implements ICardsChangesListener {
 
       await this.placeOrder(card);
     }
-
-    const balance = await this.walletService.balanceOf(walletInfo.address);
-
-    if (balance > THRESHOLD_TO_STOP_ORDERING) {
-      return;
-    }
-
-    console.log("Stopping ordering because balance is below threshold");
-    this.cardsService.unsubscribeFromChanges(this);
   }
 
   private placeOrder(card: Card): Promise<void> {
