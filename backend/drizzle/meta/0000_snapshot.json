@@ -1,0 +1,78 @@
+{
+  "version": "5",
+  "dialect": "mysql",
+  "id": "3ae4ab52-b5a8-4f3b-95f3-767b83ebd3d1",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "cards": {
+      "name": "cards",
+      "columns": {
+        "beezie_token_id": {
+          "name": "beezie_token_id",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "alt_asset_id": {
+          "name": "alt_asset_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "alt_market_value": {
+          "name": "alt_market_value",
+          "type": "decimal(10,2)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "market_value_idx": {
+          "name": "market_value_idx",
+          "columns": [
+            "alt_market_value"
+          ],
+          "isUnique": false
+        },
+        "alt_asset_id_idx": {
+          "name": "alt_asset_id_idx",
+          "columns": [
+            "alt_asset_id"
+          ],
+          "isUnique": false
+        },
+        "beezie_token_id_idx": {
+          "name": "beezie_token_id_idx",
+          "columns": [
+            "beezie_token_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "cards_beezie_token_id": {
+          "name": "cards_beezie_token_id",
+          "columns": [
+            "beezie_token_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraint": {}
+    }
+  },
+  "views": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "tables": {},
+    "indexes": {}
+  }
+}
